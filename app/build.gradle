@@ -1,15 +1,18 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+    compileSdkVersion Integer.parseInt(project.ANDROID_BUILD_SDK_VERSION)
+    buildToolsVersion project.ANDROID_BUILD_TOOLS_VERSION
     defaultConfig {
         applicationId "com.yifan.dehaze"
-        minSdkVersion 15
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        minSdkVersion ANDROID_BUILD_MIN_SDK_VERSION
+        targetSdkVersion ANDROID_BUILD_TARGET_SDK_VERSION
+        versionCode Integer.parseInt(VERSION_CODE)
+        versionName VERSION_NAME
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk {
+            abiFilters "armeabi-v7a"
+        }
     }
     buildTypes {
         release {
@@ -17,13 +20,58 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    //Android support包依赖
+    implementation "com.android.support:percent:${project.ANDROID_SUPPORT_LIB_VERSION}"
+    implementation "com.android.support:appcompat-v7:${project.ANDROID_SUPPORT_LIB_VERSION}"
+    implementation "com.android.support:recyclerview-v7:${project.ANDROID_SUPPORT_LIB_VERSION}"
+    implementation "com.android.support:cardview-v7:${project.ANDROID_SUPPORT_LIB_VERSION}"
+    implementation "com.android.support:design:${project.ANDROID_SUPPORT_LIB_VERSION}"
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    // Butterknife
+    api "com.jakewharton:butterknife:${project.BUTTERKNIFE_VERSION_CODE}"
+    annotationProcessor "com.jakewharton:butterknife-compiler:${project.BUTTERKNIFE_VERSION_CODE}" //必须要有
+
+    api "com.android.support.constraint:constraint-layout:${project.CONSTRAINTLAYOUT_VERSION}"
+    // Leakcanary
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:${project.LEAKCANARY_VERSION_CODE}"
+    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:${project.LEAKCANARY_VERSION_CODE}"
+    // AndPermission
+    api "com.yanzhenjie:permission:${project.ANDPERMISSION_VERSION_CODE}"
+    //gson
+    api "com.google.code.gson:gson:${project.GSON_VERSION_CODE}"
+    //smartTabLayout
+    api "com.ogaclejapan.smarttablayout:library:${project.SMARTTABLAYOUT_VERSION_CODE}"
+    api "com.ogaclejapan.smarttablayout:utils-v13:${project.SMARTTABLAYOUT_VERSION_CODE}"
+    //SmartRefreshLayout下拉刷新上拉加载详解
+    api "com.scwang.smartrefresh:SmartRefreshLayout:${project.SMARTREFRESHLAYOUT_VERSION_CODE}"
+    api "com.scwang.smartrefresh:SmartRefreshHeader:${project.SMARTREFRESHLAYOUT_VERSION_CODE}"
+    //statusbarutil https://github.com/laobie/StatusBarUtil
+    api "com.jaeger.statusbarutil:library:${project.STATUSBARUTIL_VERSION_CODE}"
+    // retrofit2 + rxjava2
+    api "com.squareup.retrofit2:retrofit:${project.RETROFIT_VERSION_CODE}"
+    api "com.squareup.retrofit2:converter-gson:${project.RETROFIT_VERSION_CODE}"
+    api "com.squareup.retrofit2:adapter-rxjava2:${project.RETROFIT_VERSION_CODE}"
+    api "io.reactivex.rxjava2:rxandroid:${project.RXANDROID_VERSION_CODE}"
+    api "io.reactivex.rxjava2:rxjava:${project.RXJAVA_VERSION_CODE}"
+    // Room components
+    implementation "android.arch.persistence.room:runtime:${project.ROOM_VERSION_CODE}"
+    annotationProcessor "android.arch.persistence.room:compiler:${project.ROOM_VERSION_CODE}"
+    androidTestImplementation "android.arch.persistence.room:testing:${project.ROOM_VERSION_CODE}"
+    //glide
+    api "com.github.bumptech.glide:glide:${project.GLIDE_VERSION_CODE}"
+    annotationProcessor "com.github.bumptech.glide:compiler:${project.GLIDE_VERSION_CODE}"
+    //网络请求okhttp3
+    api"com.squareup.okhttp3:okhttp:${project.OKHTTP3_VERSION_CODE}"
+    //日志的拦截器
+    api"com.squareup.okhttp3:logging-interceptor:${project.OKHTTP3_LOG_VERSION_CODE}"
 }
