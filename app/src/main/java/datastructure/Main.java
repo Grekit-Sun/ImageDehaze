@@ -35,6 +35,77 @@ public class Main {
 
     }
 
+    /**
+     * 图片A和图片B的像素Byte分别存放在一维数组byte[] dest和byte[] src中，如何实现图片B拷贝到图片A中
+     * @param W
+     * @param H
+     * @param m
+     * @param n
+     * @param x
+     * @param y
+     * @param dest
+     * @param src
+     */
+    void copyBitmap(int W, int H, int m, int n, int x, int y, byte[] dest, byte[] src) {
+    }
+
+    /**
+     * 打乱数组
+     *
+     * @param n
+     * @return
+     */
+    public int[] random(int n) {
+        int[] array = new int[n];
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            array[i] = i;
+        }
+        for (int a : array) {
+            list.add(a);
+        }
+        Collections.shuffle(list);
+        for (int i = 0; i < list.size(); i++) {
+            array[i] = list.get(i);
+        }
+        return array;
+    }
+
+    /**
+     * 排序
+     *
+     * @param n
+     */
+    public int[] sort(int n) {
+        Scanner scanner = new Scanner(System.in);
+        int[] array = new int[n];
+        while (scanner.hasNext()) {
+            for (int i = 0; i < n; i++) {
+                array[i] = scanner.nextInt();
+            }
+        }
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n - 1; j++) {
+                if (array[j] > array[j + 1]) {
+                    int temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
+                }
+            }
+        }
+        return array;
+    }
+
+    /**
+     * 求和（递归）
+     */
+    public int getSum(int n) {
+        if (n == 1) {
+            return n;
+        }
+        return getSum(n - 1) + n;
+    }
+
     public int getViewNum() {
         for (int i = 0; i < view.getChildCount(); i++) {
             viewNum(i);

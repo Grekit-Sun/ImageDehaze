@@ -4,27 +4,30 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/ujs" />
-
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="18dp"
-        android:text="一个简单的图像去雾应用"
-        android:textSize="28sp"
-        android:textStyle="bold" />
+        android:layout_marginTop="20dp"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/ujs" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="一个简单的图像去雾应用"
+            android:layout_marginLeft="8dp"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/btn_select_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
         android:layout_marginTop="70dp"
         android:padding="5dp"
         android:text="选择去雾图片"

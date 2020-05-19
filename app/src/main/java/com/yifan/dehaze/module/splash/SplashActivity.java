@@ -9,7 +9,6 @@ import android.support.v4.app.ActivityCompat;
 import android.widget.TextView;
 
 import com.yanzhenjie.permission.Action;
-import com.yifan.dehaze.MainActivity;
 import com.yifan.dehaze.R;
 import com.yifan.dehaze.base.BaseActivity;
 import com.yifan.dehaze.constant.SplashConstans;
