@@ -17,17 +17,17 @@
 - 单例类的实例在第一次被引用时候才被初始化。
 
 ```java
-public class Singleton {  
-    private static Singleton instance=null;  
-     
-    private Singleton() {  
-    }  
-    public static Singleton getInstance(){  
-        if (instance == null) {  
-            instance = new Singleton();  
-        } 
-        return instance;  
-    }  
+public class Singleton {
+    private static Singleton instance=null;
+
+    private Singleton() {
+    }
+    public static Singleton getInstance(){
+        if (instance == null) {
+            instance = new Singleton();
+        }
+        return instance;
+    }
 }
 ```
 
@@ -38,16 +38,16 @@ public class Singleton {
 - 单例类的实例在加载的时候就被初始化。
 
 ```java
-public class Singleton {  
-    private static Singleton instance = new Singleton();  
-     
-    private Singleton() {  
-         
-    }  
-     
-    public static Singleton getInstance(){  
-        return instance;  
-    }  
+public class Singleton {
+    private static Singleton instance = new Singleton();
+
+    private Singleton() {
+
+    }
+
+    public static Singleton getInstance(){
+        return instance;
+    }
 }
 ```
 
@@ -130,7 +130,7 @@ public class MyThread implements Runnable {
       System.out.println(Thread.currentThread().getName());
     }
   }
-} 
+}
 ```
 
 对于3,如果线程进入,则得到当前对象锁,那么别的线程在该类所有对象上的任何操作都不能进行.在对象级使用锁通常是一种比较粗糙的方法。为什么要将整个对象都上锁，而不允许其他线程短暂地使用对象中其他同步方法来访问共享资源？如果一个对象拥有多个资源，就不需要只为了让一个线程使用其中一部分资源，就将所有线程都锁在外面。由于每个对象都有锁，可以如下所示使用虚拟对象来上锁：
@@ -337,12 +337,12 @@ Retrofit 是一个Square开发的安卓客户端请求库。其中内部封装�
 **使用示例代码：**
 
 ```java
-Retrofit retrofit = new Retrofit.Builder() 
+Retrofit retrofit = new Retrofit.Builder()
 .baseUrl("http://ms.csdn.net/")
-.build();public interface csdnService { //如果没有参数 @GET("api/ask/all_questions") 
-Call<List<Repo>> getData(); 
-//只有少数参数 
-@GET("api/ask/all_questions") 
+.build();public interface csdnService { //如果没有参数 @GET("api/ask/all_questions")
+Call<List<Repo>> getData();
+//只有少数参数
+@GET("api/ask/all_questions")
 Call<List<Repo>> getData(@Query("page") int page, @Query("is_reward") int is_reward);
 }
 ```
@@ -383,7 +383,7 @@ Call<TnGou> getTngouPost(@Field("page") int page);
 
 ```java
 public interface csdnService {
-@GET("users/{user}/question") 
+@GET("users/{user}/question")
 Call<List<Repo>> getData(@Path("user") String user);}
 ```
 
@@ -394,11 +394,11 @@ Call<List<Repo>> getData(@Path("user") String user);}
 @Url是动态的Url请求数据的注解。需要注意的是使用@Path时，path对应的路径不能包含”/”，不然每个加到host Url后面的东西都会被省略掉。千万注意了
 
 ```java
-Retrofit retrofit = new Retrofit.Builder() 
-.baseUrl("http://ms.csdn.net/") 
-.build(); 
+Retrofit retrofit = new Retrofit.Builder()
+.baseUrl("http://ms.csdn.net/")
+.build();
 public interface csdnService {
-@GET 
+@GET
 Call<List<Repo>> getData(@Url String user);
  }
 ```

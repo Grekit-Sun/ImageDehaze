@@ -20,5 +20,4 @@ public interface DehazeService {
     @POST("rest/2.0/image-process/v1/dehaze")
     Observable<DehazeBean> getDehazeImg(@FieldMap HashMap<String, String> map);
 
-
 }
