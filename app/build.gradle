@@ -39,7 +39,8 @@ dependencies {
 
     // Butterknife
     api "com.jakewharton:butterknife:${project.BUTTERKNIFE_VERSION_CODE}"
-    annotationProcessor "com.jakewharton:butterknife-compiler:${project.BUTTERKNIFE_VERSION_CODE}" //必须要有
+    annotationProcessor "com.jakewharton:butterknife-compiler:${project.BUTTERKNIFE_VERSION_CODE}"
+    //必须要有
 
     api "com.android.support.constraint:constraint-layout:${project.CONSTRAINTLAYOUT_VERSION}"
     // Leakcanary
@@ -63,6 +64,7 @@ dependencies {
     api "com.squareup.retrofit2:adapter-rxjava2:${project.RETROFIT_VERSION_CODE}"
     api "io.reactivex.rxjava2:rxandroid:${project.RXANDROID_VERSION_CODE}"
     api "io.reactivex.rxjava2:rxjava:${project.RXJAVA_VERSION_CODE}"
+    api "com.trello.rxlifecycle2:rxlifecycle-components:${project.RXJAVA_LIFE_VERSION_CODE}"
     // Room components
     implementation "android.arch.persistence.room:runtime:${project.ROOM_VERSION_CODE}"
     annotationProcessor "android.arch.persistence.room:compiler:${project.ROOM_VERSION_CODE}"
@@ -71,7 +73,7 @@ dependencies {
     api "com.github.bumptech.glide:glide:${project.GLIDE_VERSION_CODE}"
     annotationProcessor "com.github.bumptech.glide:compiler:${project.GLIDE_VERSION_CODE}"
     //网络请求okhttp3
-    api"com.squareup.okhttp3:okhttp:${project.OKHTTP3_VERSION_CODE}"
+    api "com.squareup.okhttp3:okhttp:${project.OKHTTP3_VERSION_CODE}"
     //日志的拦截器
-    api"com.squareup.okhttp3:logging-interceptor:${project.OKHTTP3_LOG_VERSION_CODE}"
+    api "com.squareup.okhttp3:logging-interceptor:${project.OKHTTP3_LOG_VERSION_CODE}"
 }

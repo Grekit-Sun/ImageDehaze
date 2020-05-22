@@ -19,4 +19,5 @@ public class DehazeConstants {
      */
     public static final String URL_DEHAZE = "https://aip.baidubce.com/rest/2.0/image-process/v1/dehaze";
 
+
 }

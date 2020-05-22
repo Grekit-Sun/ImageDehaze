@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.yanzhenjie.permission.Action;
 import com.yifan.dehaze.R;
 import com.yifan.dehaze.base.BaseActivity;
-import com.yifan.dehaze.constant.SplashConstans;
+import com.yifan.dehaze.constant.SplashConstants;
 import com.yifan.dehaze.helper.PermissionHelper;
 import com.yifan.dehaze.module.SelectImageActivity;
 
@@ -38,7 +38,7 @@ public class SplashActivity extends BaseActivity<SplashPresenter,ISplashView> im
     protected void initView() {
         ButterKnife.bind(this);
         //设置自定义字体
-        Typeface typeface = Typeface.createFromAsset(getAssets(), SplashConstans.FONTS);
+        Typeface typeface = Typeface.createFromAsset(getAssets(), SplashConstants.FONTS);
         mAppNameTxt.setTypeface(typeface);
         mSloganTxt.setTypeface(typeface);
         mBottomAppNameTxt.setTypeface(typeface);

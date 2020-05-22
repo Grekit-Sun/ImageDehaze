@@ -5,16 +5,19 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
-
 
 import com.yifan.dehaze.R;
 import com.yifan.dehaze.base.BaseActivity;
+import com.yifan.dehaze.constant.SplashConstants;
+import com.yifan.dehaze.module.dehaze.DehazeActivity;
 import com.yifan.dehaze.module.dehaze_old.ImageActivity;
 import com.yifan.dehaze.util.BitmapUtil;
 
@@ -30,6 +33,8 @@ public class SelectImageActivity extends BaseActivity<SelectImagePresenter, ISel
     Button mBtnSelectImage;
 
     public static final int GET_IMAGE = 10;
+    @BindView(R.id.title)
+    TextView mTitle;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,6 +44,9 @@ public class SelectImageActivity extends BaseActivity<SelectImagePresenter, ISel
 
     private void initView() {
         ButterKnife.bind(this);
+        //设置自定义字体
+        Typeface typeface = Typeface.createFromAsset(getAssets(), SplashConstants.FONTS);
+        mTitle.setTypeface(typeface);
     }
 
     @OnClick(R.id.btn_select_image)
@@ -77,21 +85,8 @@ public class SelectImageActivity extends BaseActivity<SelectImagePresenter, ISel
             try {
                 //获取图片
                 Bitmap bitmap = BitmapFactory.decodeStream(cr.openInputStream(uri));
-                BitmapUtil.saveBitmap2file(bitmap,"oriImage");
-//                image.setImageBitmap(bitmap);
-//                //开启线程做网络操作
-//                new Thread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        mImageadler.sendEmptyMessage(0x1);
-//                        //获取清晰图片
-//                        clearBitmap = ImageDehaze.getInstance().getDehazeImage(oriBitmap);
-//                        if (clearBitmap != null && oriBitmap != null) {
-//                            mImageadler.sendEmptyMessage(0x2);
-//                        }
-//                    }
-//                }).start();
-                Intent intent = new Intent(SelectImageActivity.this, ImageActivity.class);
+                BitmapUtil.saveBitmap2file(bitmap, "oriImage");
+                Intent intent = new Intent(SelectImageActivity.this, DehazeActivity.class);
                 startActivity(intent);
             } catch (FileNotFoundException e) {
                 Log.e("Exception", e.getMessage(), e);

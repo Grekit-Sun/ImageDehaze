@@ -10,14 +10,9 @@ import com.yifan.dehaze.util.OkHttpUtil;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.FormBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
 import okhttp3.Response;
 
 /**
@@ -25,8 +20,7 @@ import okhttp3.Response;
  */
 public class ImageDehaze {
 
-
-    private static ImageDehaze mImageDehaze = null;
+    private static volatile ImageDehaze mImageDehaze = null;
 
     private ImageDehaze() {
     }

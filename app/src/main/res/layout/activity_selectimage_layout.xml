@@ -1,42 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:drawableLeft="@mipmap/icon_haze"
+        android:drawablePadding="8dp"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/music_vp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center">
-
-        <ImageView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:src="@drawable/ujs" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="一个简单的图像去雾应用"
-            android:layout_marginLeft="8dp"
-            android:textSize="25sp"
-            android:textStyle="bold" />
-    </LinearLayout>
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <Button
         android:id="@+id/btn_select_image"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="70dp"
+        android:layout_weight="2"
         android:padding="5dp"
         android:text="选择去雾图片"
         android:textSize="18sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_marginBottom="20dp"
+        android:layout_weight="1"
         android:gravity="bottom">
 
         <TextView
