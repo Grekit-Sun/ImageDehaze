@@ -38,13 +38,14 @@ public class DehazeActivity extends BaseActivity<DehazePresent, IDehazeView> imp
      * 图像去雾
      */
     private void imageDehaze() {
-        mPresenter.startDehaze(oriImage);
+        mPresenter.startDehaze(oriImage, DehazeActivity.this);
     }
 
     private void initView() {
         ButterKnife.bind(this);
         oriImage = BitmapUtil.getBitmapFromFile("oriImage");
         if (oriImage != null) {
+            oriImage = mPresenter.dealImg(oriImage);
             mImage.setImageBitmap(oriImage);
             mImgType.setText("原图");
         }
@@ -90,4 +91,5 @@ public class DehazeActivity extends BaseActivity<DehazePresent, IDehazeView> imp
     protected Class<DehazePresent> getPresenterClass() {
         return DehazePresent.class;
     }
+
 }

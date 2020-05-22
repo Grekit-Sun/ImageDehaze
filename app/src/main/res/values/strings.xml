@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">逸帆去雾</string>
     <string name="app_slogan">让图像充满灵魂</string>
+    <string name="is_dehaze">正在进行去雾处理...</string>
 </resources>

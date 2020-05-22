@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.yifan.dehaze">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -11,7 +12,10 @@
     <uses-feature android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+
     <application
+        android:name=".DehazeApplication"
         android:allowBackup="true"
         android:icon="@mipmap/icon_haze"
         android:label="@string/app_name"

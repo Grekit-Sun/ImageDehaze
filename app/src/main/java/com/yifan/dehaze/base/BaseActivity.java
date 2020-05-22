@@ -80,4 +80,8 @@ public abstract class BaseActivity<T extends IPresenter, K> extends AppCompatAct
     public void showToast(@NonNull String info) {
         WeToast.getInstance().showToast(this, info);
     }
+
+    public void showDialog(String string) {
+
+    }
 }
