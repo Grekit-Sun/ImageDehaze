@@ -10,10 +10,12 @@ import android.widget.TextView;
 
 import com.yanzhenjie.permission.Action;
 import com.yifan.dehaze.R;
+import com.yifan.dehaze.VerifityActivity;
 import com.yifan.dehaze.base.BaseActivity;
 import com.yifan.dehaze.constant.SplashConstants;
 import com.yifan.dehaze.helper.PermissionHelper;
 import com.yifan.dehaze.module.SelectImageActivity;
+import com.yifan.dehaze.module.dehaze.DehazeActivity;
 
 import java.util.List;
 

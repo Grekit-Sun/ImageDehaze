@@ -76,4 +76,6 @@ dependencies {
     api "com.squareup.okhttp3:okhttp:${project.OKHTTP3_VERSION_CODE}"
     //日志的拦截器
     api "com.squareup.okhttp3:logging-interceptor:${project.OKHTTP3_LOG_VERSION_CODE}"
+
+    api 'com.luozm.captcha:captcha:1.1.2'
 }

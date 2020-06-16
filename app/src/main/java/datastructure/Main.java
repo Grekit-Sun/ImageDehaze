@@ -2,6 +2,7 @@ package datastructure;
 
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
@@ -36,7 +37,208 @@ public class Main {
     }
 
     /**
+     * 旋转数组
+     * 输入: [1,2,3,4,5,6,7] 和 k = 3
+     * 输出: [5,6,7,1,2,3,4]
+     */
+    public int[] reseverArray(int[] array, int k) {
+        if (array == null || array.length == 0) {
+            return array;
+        }
+        k = k % array.length;
+        //拷贝前面的
+        int[] rightPart = Arrays.copyOfRange(array, array.length - k, array.length);
+        //旋转
+        System.arraycopy(array, 0, array, k, array.length - k);       //原数组，起位置，目标数组，开始位置，长度
+        System.arraycopy(rightPart, 0, array, 0, k);
+        return array;
+    }
+
+    /**
+     * 冒泡排序
+     */
+    public void bubbleSort(int[] array) {
+        for (int i = 0; i < array.length - 1; i++) {
+            for (int j = 0; j < array.length - 1 - i; j++) {
+                if (array[j] > array[j + 1]) {
+                    int temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
+                }
+            }
+        }
+    }
+
+    /**
+     * 二分查找
+     */
+    public boolean binarySearch(int[] array, int target) {
+        int low = 0;
+        int high = array.length - 1;
+        int mid;
+        while (low <= high) {
+            mid = (low + high) / 2;
+            if (target == array[mid]) {
+                return true;
+            } else if (target > mid) {
+                low = mid + 1;
+            } else if (target < high) {
+                high = mid - 1;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 先序遍历（深度优先）非递归
+     */
+    public List<Integer> preTavsal(TreeNode root) {
+        ArrayList<Integer> list = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        while (root != null || !stack.isEmpty()) {
+            while (root != null) {
+                list.add(root.val);
+                stack.push(root);
+                root = root.left;
+            }
+            if (!stack.isEmpty()) {
+                stack.pop();
+                root = root.right;
+            }
+        }
+        return list;
+    }
+
+    /**
+     * 中序遍历，非递归
+     */
+    public List<Integer> midTravsal(TreeNode root) {
+        ArrayList<Integer> list = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        if (root == null) {
+            return list;
+        }
+        while (root != null || !stack.isEmpty()) {
+            while (root != null) {
+                stack.push(root);
+                root = root.left;
+            }
+            if (!stack.isEmpty()) {
+                stack.pop();
+                list.add(root.val);
+                root = root.right;
+            }
+        }
+        return list;
+    }
+
+    /**
+     * 后序遍历 递归
+     */
+    public List<Integer> lastTravsal(TreeNode root) {
+        ArrayList<Integer> list = new ArrayList<>();
+        lastTravsal(root.left);
+        lastTravsal(root.right);
+        list.add(root.val);
+        return list;
+    }
+
+    /**
+     * 广度优先遍历 (队列)
+     */
+    public ArrayList<Integer> breadFrist(TreeNode root) {
+        ArrayList<Integer> list = new ArrayList<>();
+        LinkedList<TreeNode> queue = new LinkedList<>();
+        if (root == null) {
+            return list;
+        }
+        TreeNode currentNode = root;
+        queue.offer(currentNode);
+        while (!queue.isEmpty()) {
+            currentNode = queue.poll();
+            list.add(currentNode.val);
+            if (currentNode.left != null) {
+                queue.offer(currentNode.left);
+            }
+            if (currentNode.right != null) {
+                queue.offer(currentNode.right);
+            }
+        }
+        return list;
+    }
+
+    /**
+     * 创建二叉树(队列)
+     */
+    public void createBinaryTree(int[] array) {
+        if (array == null || array.length == 0) {
+            return;
+        }
+        LinkedList<TreeNode> list = new LinkedList<>();
+        for (int a : array) {
+            list.add(new TreeNode(a));
+        }
+        for (int parentIndex = 0; parentIndex < array.length / 2 - 1; parentIndex++) {
+            list.get(parentIndex).left = list.get(parentIndex * 2 + 1);     //左孩子
+            list.get(parentIndex).right = list.get(parentIndex * 2 + 2);       //右孩子
+        }
+        int lastIndex = array.length - 1;
+        list.get(lastIndex).left = list.get(lastIndex * 2 + 1);
+        if (array.length % 2 == 1) {
+            list.get(lastIndex).right = list.get(lastIndex * 2 + 2);
+        }
+    }
+
+    /**
+     * 链表反转
+     */
+    public ListNode reseveListNode(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        ListNode pre = null;
+        ListNode next = null;
+
+        while (head != null) {
+            next = head.next;       //记录下一个节点
+            head.next = pre;         //当前节点指向上一个节点
+            pre = head;              //pre 向后移动
+            head = next;
+        }
+        return pre;
+    }
+
+    /**
+     * 计算ViewGroup的总数
+     */
+    public int getSumView(View view) {
+        int viewCount = 0;
+
+        if (view == null) {
+            return 0;
+        }
+
+        if (view instanceof ViewGroup) {
+            for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
+                View child = ((ViewGroup) view).getChildAt(i);
+                if (child instanceof ViewGroup) {
+                    viewCount += getSumView(child);
+                } else {
+                    viewCount++;
+                }
+            }
+
+        } else {
+            viewCount++;
+        }
+        return viewCount;
+    }
+
+
+    /**
      * 图片A和图片B的像素Byte分别存放在一维数组byte[] dest和byte[] src中，如何实现图片B拷贝到图片A中
+     *
      * @param W
      * @param H
      * @param m
@@ -94,30 +296,6 @@ public class Main {
             }
         }
         return array;
-    }
-
-    /**
-     * 求和（递归）
-     */
-    public int getSum(int n) {
-        if (n == 1) {
-            return n;
-        }
-        return getSum(n - 1) + n;
-    }
-
-    public int getViewNum() {
-        for (int i = 0; i < view.getChildCount(); i++) {
-            viewNum(i);
-            view = (ViewGroup) view.getChildAt(i);
-        }
-        return sum;
-    }
-
-    int sum = 0;
-
-    private void viewNum(int pos) {
-        sum += view.getChildCount();
     }
 
     /**
@@ -2044,7 +2222,7 @@ public class Main {
     }
 
     /**
-     * 输入一个链表，反转链表后，输出新链表的表头。
+     * 输入一个链表，反转链表后，输出新链表的表头（链表反转）。
      *
      * @param head
      * @return
@@ -2393,7 +2571,6 @@ public class Main {
             }
         }
         return false;
-
     }
 
 
